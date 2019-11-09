@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>ngreact-sample</title>
+</head>
+
+<body ng-app="app">
+    <div ng-controller="helloController">
+        <react-component name="HelloComponent" props="person" watch-depth="reference" />
+    </div>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/react/react.js"></script>
+<script src="bower_components/react/react-dom.js"></script>
+<script src="bower_components/ngReact/ngReact.min.js"></script>
+<script>
+    angular
+        .module('app', ['react'])
+        .controller('helloController', function ($scope) {
+            $scope.person = { firstName: 'yota', lastName: 'anashige' };
+        });
+
+    var HelloComponent = React.createClass({
+        render: function () {
+            return React.DOM.span(null, `Hello ${this.props.firstName} ${this.props.lastName}`);
+        }
+    });
+</script>
+
+</html>
